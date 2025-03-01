@@ -10,7 +10,9 @@
 3. [StarRailRes](https://github.com/Mar-7th/StarRailRes)をクローンします。
 <br>すべて同じリポジトリにクローンしてください。
 4. 以下のコマンドを実行してください
-```npm install ```
+```
+$ npm install
+```
 
 # 使い方
 index.jsにて、最終行のコメントの部分にuidを入力して実行してください。
