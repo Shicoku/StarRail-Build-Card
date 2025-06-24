@@ -66,4 +66,4 @@ Copyright (c) 2025 Shicoku / Syu
 # お問い合わせ
 
 ご質問等ございましたら、気軽にお声がけください。
-<br />[X](https://x.com/H2DH8K)の DM、またはメールアドレス shicoku07@gmail.com 等でお願いします。
+<br />[X の DM](https://x.com/H2DH8K)、またはメールアドレス shicoku07@gmail.com 等でお願いします。
