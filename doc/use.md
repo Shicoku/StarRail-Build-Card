@@ -11,7 +11,7 @@
 const MiHoMo = require("./MiHoMo");
 ```
 
-また、画像ファイルとして出力したい場合、fs モジュールを使うことによって可能です。
+また、画像ファイルとして出力したい場合、fsモジュールを使うことによって可能です。
 
 ```js
 const fs = require("fs");
@@ -20,7 +20,7 @@ const fs = require("fs");
 ## コンフィグ設定
 
 コンフィグを変更することによって、各ユーザーがある程度カスタマイズできるようにしています。
-<br />以下については、[StarRailScore](https://github.com/Mar-7th/StarRailScore) でクローンした score.json のファイルパスを変更する例を示します。
+<br />以下については、[StarRailScore](https://github.com/Mar-7th/StarRailScore)でクローンしたscore.jsonのファイルパスを変更する例を示します。
 
 ```js
 MiHoMo.config.scorePath = "./score/score.json";
@@ -30,27 +30,15 @@ MiHoMo.config.scorePath = "./score/score.json";
 
 | コンフィグ名 | 値           | 内容                            |
 | ------------ | ------------ | ------------------------------- |
-| scorePath    | Path(string) | score.json のファイルパスの指定 |
+| scorePath    | Path(string) | score.jsonのファイルパスの指定 |
 
 ※今後、コンフィグ内容は増やしていく予定です。
-
-## モジュール一覧
-
-| モジュール名 | パラメータ                    | 動作                                                                   |
-| ------------ | ----------------------------- | ---------------------------------------------------------------------- |
-| getApi       | uid(string)                   | MiHoMo API を実行します。                                              |
-| getDataBase  | data(json), character(Number) | API のデータとキャラクターから、スコアなしの json データを生成します。 |
-| getDataScore | data(json), character(Number) | API のデータとキャラクターから、スコアありの json データを生成します。 |
-| createImg    | data(json)                    | 生成したデータから画像を生成しす。                                     |
-
-本プログラムでは、node-canvas によって画像を作成しています。
-<br />createImg では、最終的に canvas を返す形になっています。
 
 ## 実行
 
 各モジュールを順番に実行します。
 <br />[作成例](../index.js)のように関数を作っても構いません。
-<br />また、then を使用しても大丈夫です。以下は例として、index.js を書き換えたものです。
+<br />また、thenを使用しても大丈夫です。以下は例として、index.jsを書き換えたものです。
 
 ```js
 const fs = require("fs");
@@ -69,3 +57,5 @@ MiHoMo.getApi(uid)
     console.error("Error occurred:", err);
   });
 ```
+
+なお、各種モジュールの詳細については[モジュール一覧](./module.md)を参照してください。
