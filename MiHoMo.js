@@ -14,7 +14,7 @@ async function getApi(uid) {
 }
 
 //データを取得する
-function getData(data, character) {
+function getDataBase(data, character) {
   let json = {
     uid: data["player"]["uid"], // uid
     id: data["characters"][character]["id"], // キャラID
@@ -143,8 +143,8 @@ function getData(data, character) {
 }
 
 // 遺物スコアの計算
-function getScore(data) {
-  let json = data;
+function getDataScore(data, char) {
+  let json = getDataBase(data, char);
   let mainScore = 0;
   let subScore = 0;
   let totalScore = 0;
@@ -401,7 +401,7 @@ async function createImg(json) {
 module.exports = {
   config,
   getApi,
-  getData,
-  getScore,
+  getDataBase,
+  getDataScore,
   createImg,
 };

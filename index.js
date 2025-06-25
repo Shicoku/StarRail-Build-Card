@@ -3,8 +3,7 @@ const MiHoMo = require("./MiHoMo");
 
 async function main(uid) {
   const data = await MiHoMo.getApi(uid);
-  const get = MiHoMo.getData(data, 1);
-  const json = MiHoMo.getScore(get);
+  const json = MiHoMo.getDataScore(data, 2);
   MiHoMo.createImg(json)
     .then((canvas) => {
       fs.writeFileSync("output.png", canvas.toBuffer());

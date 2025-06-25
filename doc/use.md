@@ -36,12 +36,12 @@ MiHoMo.config.scorePath = "./score/score.json";
 
 ## モジュール一覧
 
-| モジュール名 | パラメータ                    | 動作                                                                 |
-| ------------ | ----------------------------- | -------------------------------------------------------------------- |
-| getApi       | uid(string)                   | MiHoMo API を実行します。                                            |
-| getData      | data(json), character(Number) | API のデータとキャラクターから、生成に必要な元データを生成します。   |
-| getScore     | data(json)                    | 生成した元データを使用し、スコア計算をし、新たなデータを生成します。 |
-| createImg    | data(json)                    | 生成したデータから画像を生成します。                                 |
+| モジュール名 | パラメータ                    | 動作                                                                   |
+| ------------ | ----------------------------- | ---------------------------------------------------------------------- |
+| getApi       | uid(string)                   | MiHoMo API を実行します。                                              |
+| getDataBase  | data(json), character(Number) | API のデータとキャラクターから、スコアなしの json データを生成します。 |
+| getDataScore | data(json), character(Number) | API のデータとキャラクターから、スコアありの json データを生成します。 |
+| createImg    | data(json)                    | 生成したデータから画像を生成しす。                                     |
 
 本プログラムでは、node-canvas によって画像を作成しています。
 <br />createImg では、最終的に canvas を返す形になっています。
@@ -59,8 +59,7 @@ const MiHoMo = require("./MiHoMo");
 const uid = "830647229";
 
 MiHoMo.getApi(uid)
-  .then((data) => MiHoMo.getData(data, 0))
-  .then((get) => MiHoMo.getScore(get))
+  .then((data) => MiHoMo.getDataScore(data, 0))
   .then((json) => MiHoMo.createImg(json))
   .then((canvas) => {
     fs.writeFileSync("output.png", canvas.toBuffer());
