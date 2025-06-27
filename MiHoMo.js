@@ -36,6 +36,7 @@ function getDataBase(data, character) {
     element: "StarRailRes/" + data["characters"][character]["element"]["icon"], //属性
     light_cone: [], //光円錐
     relics: [], //遺物
+    relic_sets: [], //遺物セット
   };
 
   for (let i = 0; i < 4; i++) {
@@ -97,6 +98,16 @@ function getDataBase(data, character) {
         },
         sub_affix: [],
       };
+
+      if (data["characters"][character]["relic_sets"] != 0) {
+        for (let i = 0; i < data["characters"][character]["relic_sets"].length; i++) {
+          json["relic_sets"][i] = {
+            name: data["characters"][character]["relic_sets"][i]["name"],
+            icon: "StarRailRes/" + data["characters"][character]["relic_sets"][i]["icon"],
+            num: data["characters"][character]["relic_sets"][i]["num"],
+          };
+        }
+      }
 
       if (data["characters"][character]["relics"][i]["sub_affix"].length != 0) {
         for (let j = 0; j < data["characters"][character]["relics"][i]["sub_affix"].length; j++) {
@@ -183,6 +194,7 @@ function getDataScore(data, char) {
   return json;
 }
 
+// 画像を生成する
 async function createImg(json) {
   // キャンバスの設定
   const canvas = createCanvas(1920, 1080);
@@ -197,7 +209,7 @@ async function createImg(json) {
 
   // キャラ描画
   await loadImage(json["icon"]).then((img) => {
-    ctx.drawImage(img, 200, -80, img.width / 1.5, img.height / 1.5);
+    ctx.drawImage(img, 200, -90, img.width / 1.5, img.height / 1.5);
   });
 
   // 属性と運命アイコン描画
@@ -338,8 +350,26 @@ async function createImg(json) {
     }
   }
 
+  // 遺物セット描画
+  if (json["relic_sets"]) {
+    for (let i = 0; i < json["relic_sets"].length; i++) {
+      await loadImage(json["relic_sets"][i]["icon"]).then((img) => {
+        if (i == 0) {
+          fillRoundRect(ctx, 660, 700, 400, 190, 30, "rgba(0,0,0,0.6)");
+        }
+        ctx.drawImage(img, 680, 710 + i * 55, img.width / 2.3, img.height / 2.3);
+
+        ctx.fillStyle = "rgb(255, 255, 255)";
+        ctx.textAlign = "left";
+        ctx.font = '25px "kt"';
+        ctx.fillText(json["relic_sets"][i]["name"] + "  x" + json["relic_sets"][i]["num"], 750, 740 + i * 58);
+      });
+    }
+  }
+
   // キャラ名描画
   ctx.font = '60px "kt"';
+  ctx.textAlign = "start";
   ctx.fillStyle = "rgb(255, 255, 255)";
   ctx.fillText(json["name"], 40, 70);
 
@@ -351,14 +381,14 @@ async function createImg(json) {
   ctx.strokeText("Lv. " + json["level"], 45, 120);
 
   // スコア描画
-  fillRoundRect(ctx, 630, 800, 460, 180, 30, "rgba(0,0,0,0.6)");
+  fillRoundRect(ctx, 660, 900, 400, 170, 30, "rgba(0,0,0,0.6)");
   ctx.font = '40px "kt"';
   ctx.fillStyle = "rgb(255, 255, 255)";
-  ctx.fillText("Total Score", 670, 850);
+  ctx.fillText("Total Score", 690, 950);
   ctx.font = '80px "kt"';
-  ctx.fillText(json["total_score"], 680, 930);
+  ctx.fillText(json["total_score"], 700, 1030);
   ctx.strokeStyle = "rgb(255, 255, 255)";
-  ctx.strokeText(json["total_score"], 680, 930);
+  ctx.strokeText(json["total_score"], 700, 1030);
 
   scoreRank = "D";
   if (json["total_score"] >= 600) scoreRank = "SS";
@@ -367,9 +397,9 @@ async function createImg(json) {
   else if (json["total_score"] >= 240) scoreRank = "B";
   else if (json["total_score"] >= 60) scoreRank = "C";
   ctx.font = '130px "kt"';
-  ctx.fillText(scoreRank, 940, 930);
+  ctx.fillText(scoreRank, 920, 1030);
   ctx.strokeStyle = "rgb(255, 255, 255)";
-  ctx.strokeText(scoreRank, 940, 930);
+  ctx.strokeText(scoreRank, 920, 1030);
 
   // 遺物スコア描画
   if (json["relics"]) {
