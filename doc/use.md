@@ -20,7 +20,7 @@ const fs = require("fs");
 ## コンフィグ設定
 
 コンフィグを変更することによって、各ユーザーがある程度カスタマイズできるようにしています。
-<br />以下については、[StarRailScore](https://github.com/Mar-7th/StarRailScore)でクローンしたscore.jsonのファイルパスを変更する例を示します。
+<br />以下については、[StarRailScore](https://github.com/Mar-7th/StarRailScore)でクローンした`score.json`のファイルパスを変更する例を示します。
 
 ```js
 MiHoMo.config.scorePath = "./score/score.json";
@@ -38,7 +38,7 @@ MiHoMo.config.scorePath = "./score/score.json";
 
 各モジュールを順番に実行します。
 <br />[作成例](../index.js)のように関数を作っても構いません。
-<br />また、thenを使用しても大丈夫です。以下は例として、index.jsを書き換えたものです。
+<br />また、`then`を使用しても大丈夫です。以下は例として、`index.js`を書き換えたものです。
 
 ```js
 const fs = require("fs");

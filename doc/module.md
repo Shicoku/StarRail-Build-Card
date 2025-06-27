@@ -1,6 +1,6 @@
 # モジュール一覧
 
-## getAPI(uid)
+## `getAPI(uid)`
 
 MiHoMo APIを実行します。
 
@@ -8,13 +8,13 @@ MiHoMo APIを実行します。
 | ---- | ------ | ---------------- |
 | uid  | string | uidを渡します。 |
 
-※uidの型はstring(文字列)であることに注意してください
+※uidの型は`string(文字列)`であることに注意してください
 
 ```js
 MiHoMo.getApi("830647229");
 ```
 
-## getDataBase(data, character)
+## `getDataBase(data, character)`
 
 取得したAPIデータとキャラクターの情報を参照し、jsonデータを作成します。
 <br />なお、遺物スコアは計算されません。
@@ -28,7 +28,7 @@ MiHoMo.getApi("830647229");
 MiHoMo.getDataBase(data, 0);
 ```
 
-## getDataScore
+## `getDataScore`
 
 取得したAPIデータとキャラクターの情報を参照し、sonデータを作成します。
 <br />なお、遺物スコアも計算されます。
@@ -45,13 +45,13 @@ MiHoMo.getDataScore(data, 0);
 ## createImg(data)
 
 生成したjsonデータから画像を生成します。
-<br />なお、getDataScoreで生成したデータのみ対応です。
+<br />なお、`getDataScore`で生成したデータのみ対応です。
 
-画像生成にはnode canvasを使用しています。
-<br />最終的にはcanvasを返しますので、必要に応じてpngなどの形式に変換する必要があります。
+画像生成には`node canvas`を使用しています。
+<br />最終的には`canvas`を返しますので、必要に応じて`png`などの形式に変換する必要があります。
 | 引数 | 型 | 説明 |
 | - | - | - |
-| data | json | getDataScoreによって生成されたデータを渡します。 |
+| data | json | `getDataScore`によって生成されたデータを渡します。 |
 
 ```js
 MiHoMo.createImg(data).then((canvas) => {

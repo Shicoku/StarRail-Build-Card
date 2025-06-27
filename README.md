@@ -11,8 +11,8 @@
 以下のリポジトリをクローンしてください。
 
 1. このプロジェクトのリポジトリ
-2. [StarRailScore](https://github.com/Mar-7th/StarRailScore) にて、score.json
-3. [StarRailRes](https://github.com/Mar-7th/StarRailRes)にて、iconフォルダ、及びimageフォルダ
+2. [StarRailScore](https://github.com/Mar-7th/StarRailScore) にて、`score.json`
+3. [StarRailRes](https://github.com/Mar-7th/StarRailRes)にて、`iconフォルダ`・ `imageフォルダ`
 
 続いて以下のコマンド実行し、必要なパッケージをインストールします。
 
@@ -22,7 +22,7 @@ $ npm install
 
 # 使い方(簡易版)
 
-index.jsにて、main関数内に各自のuidを入力し、実行してください。
+`index.js`にて、`main`関数内に各自の`uid`を入力し、実行してください。
 <br />詳しい使い方については[使い方](./doc/use.md)を参照してください
 
 # ご使用にあたって
@@ -55,7 +55,7 @@ Copyright (c) 2025 Shicoku / Syu
 # お問い合わせ
 
 ご質問等ございましたら、気軽にお声がけください。
-<br />[X の DM](https://x.com/H2DH8K)、またはメールアドレス shicoku07@gmail.com 等でお願いします。
+<br />[XのDM](https://x.com/H2DH8K)、またはメールアドレス shicoku07@gmail.com 等でお願いします。
 
 # 更新
 
@@ -69,4 +69,7 @@ Copyright (c) 2025 Shicoku / Syu
   <br />MITライセンスとして公開
 - 2025.6.25
   <br />モジュールの調整
+  <br />docの更新
+- 2025.6.27
+  <br />デザインの調整
   <br />docの更新

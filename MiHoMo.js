@@ -184,19 +184,23 @@ function getDataScore(data, char) {
 }
 
 async function createImg(json) {
+  // キャンバスの設定
   const canvas = createCanvas(1920, 1080);
   const ctx = canvas.getContext("2d");
 
-  registerFont("font/kt.ttf", { family: "kt" });
+  registerFont("font/kt.ttf", { family: "kt" }); // フォントの指定
 
+  //背景画像の指定
   await loadImage("./img/back.jpg").then((img) => {
     ctx.drawImage(img, 0, 0, 1920, 1080);
   });
 
+  // キャラ描画
   await loadImage(json["icon"]).then((img) => {
     ctx.drawImage(img, 200, -80, img.width / 1.5, img.height / 1.5);
   });
 
+  // 属性と運命アイコン描画
   await loadImage(json["element"]).then((img) => {
     ctx.drawImage(img, 150, 75, img.width / 5, img.height / 5);
   });
@@ -204,52 +208,59 @@ async function createImg(json) {
     ctx.drawImage(img, 200, 79, img.width / 10, img.height / 10);
   });
 
+  // ステータス描画
+  let inter = 0;
+  if (json["status"].length == 11) inter = 55;
+  if (json["status"].length == 10) inter = 60;
+  if (json["status"].length == 9) inter = 65;
   for (let i = 0; i < json["status"].length; i++) {
     await loadImage(json["status"][i]["icon"]).then((img) => {
       if (i == 0) {
-        fillRoundRect(ctx, 20, 150, 480, 630, 30, "rgba(0, 0, 0, 0.5)");
+        fillRoundRect(ctx, 20, 140, 480, 630, 30, "rgba(0, 0, 0, 0.5)");
       }
-      ctx.drawImage(img, 40, 165 + i * 55, img.width / 2.3, img.height / 2.3);
+      ctx.drawImage(img, 40, 155 + i * inter, img.width / 2.3, img.height / 2.3);
 
       ctx.fillStyle = "rgb(255, 255, 255)";
       ctx.font = '38px "kt"';
-      ctx.fillText(json["status"][i]["name"], 95, 210 + i * 55);
+      ctx.fillText(json["status"][i]["name"], 95, 200 + i * inter);
       ctx.textAlign = "right";
-      ctx.fillText(json["status"][i]["val"], 470, 210 + i * 55);
+      ctx.fillText(json["status"][i]["val"], 470, 200 + i * inter);
       ctx.textAlign = "start";
     });
   }
 
+  // 光円錐描画
   if (json["light_cone"] != null) {
     await loadImage(json["light_cone"]["icon"]).then((img) => {
-      fillRoundRect(ctx, 20, 800, 480, 260, 30, "rgba(0,0,0,0.5)");
+      fillRoundRect(ctx, 20, 780, 480, 260, 30, "rgba(0,0,0,0.5)");
 
       ctx.font = '20px "kt"';
       ctx.fillStyle = "rgb(255, 255, 255)";
-      ctx.fillText(json["light_cone"]["name"], 250, 850);
+      ctx.fillText(json["light_cone"]["name"], 250, 830);
       ctx.font = '35px "kt"';
-      ctx.fillText("Lv. " + json["light_cone"]["level"] + " R" + json["light_cone"]["rank"], 250, 900);
+      ctx.fillText("Lv. " + json["light_cone"]["level"] + " R" + json["light_cone"]["rank"], 250, 880);
 
-      ctx.drawImage(img, 50, 820, 160.5, 199);
+      ctx.drawImage(img, 50, 810, 160.5, 199);
     });
     await loadImage("StarRailRes/icon/deco/Rarity" + json["light_cone"]["rarity"] + ".png").then((img) => {
-      if (json["light_cone"]["rarity"] == 3) ctx.drawImage(img, -25, 970, img.width / 1.5, img.height / 1.5);
-      else if (json["light_cone"]["rarity"] == 4) ctx.drawImage(img, -45, 970, img.width / 1.5, img.height / 1.5);
-      else ctx.drawImage(img, -55, 970, img.width / 1.5, img.height / 1.5);
+      if (json["light_cone"]["rarity"] == 3) ctx.drawImage(img, -25, 950, img.width / 1.5, img.height / 1.5);
+      else if (json["light_cone"]["rarity"] == 4) ctx.drawImage(img, -45, 950, img.width / 1.5, img.height / 1.5);
+      else ctx.drawImage(img, -55, 950, img.width / 1.5, img.height / 1.5);
     });
     for (let i = 0; i < json["light_cone"]["attributes"].length; i++) {
       await loadImage(json["light_cone"]["attributes"][i]["icon"]).then((img) => {
-        ctx.drawImage(img, 240, 900 + i * 40, img.width / 2.5, img.height / 2.5);
+        ctx.drawImage(img, 240, 880 + i * 40, img.width / 2.5, img.height / 2.5);
 
         ctx.font = "30px 'kt'";
-        ctx.fillText(json["light_cone"]["attributes"][i]["name"], 300, 940 + i * 40);
+        ctx.fillText(json["light_cone"]["attributes"][i]["name"], 300, 920 + i * 40);
         ctx.textAlign = "right";
-        ctx.fillText(json["light_cone"]["attributes"][i]["val"], 470, 940 + i * 40);
+        ctx.fillText(json["light_cone"]["attributes"][i]["val"], 470, 920 + i * 40);
         ctx.textAlign = "start";
       });
     }
   }
 
+  // 軌跡描画
   for (let i = 0; i < json["skill"].length; i++) {
     await loadImage("./img/back_icon.png").then((img) => {
       ctx.drawImage(img, 540, 220 + i * 150, img.width / 1.3, img.height / 1.3);
@@ -267,6 +278,7 @@ async function createImg(json) {
     });
   }
 
+  // 凸数描画
   for (let i = 0; i < json["rank_icons"].length; i++) {
     await loadImage("./img/back_icon.png").then((img) => {
       ctx.drawImage(img, 1100, 130 + i * 150, img.width / 1.3, img.height / 1.3);
@@ -281,6 +293,7 @@ async function createImg(json) {
     }
   }
 
+  // 遺物描画
   if (json["relics"]) {
     for (let i = 0; i < json["relics"].length; i++) {
       await loadImage(json["relics"][i]["icon"]).then((img) => {
@@ -325,16 +338,19 @@ async function createImg(json) {
     }
   }
 
+  // キャラ名描画
   ctx.font = '60px "kt"';
   ctx.fillStyle = "rgb(255, 255, 255)";
   ctx.fillText(json["name"], 40, 70);
 
+  // キャラレベル描画
   ctx.font = '35px "kt"';
   ctx.fillStyle = "rgb(255, 255, 255)";
   ctx.fillText("Lv. " + json["level"], 45, 120);
   ctx.strokeStyle = "rgb(255, 255, 255)";
   ctx.strokeText("Lv. " + json["level"], 45, 120);
 
+  // スコア描画
   fillRoundRect(ctx, 630, 800, 460, 180, 30, "rgba(0,0,0,0.6)");
   ctx.font = '40px "kt"';
   ctx.fillStyle = "rgb(255, 255, 255)";
@@ -355,6 +371,7 @@ async function createImg(json) {
   ctx.strokeStyle = "rgb(255, 255, 255)";
   ctx.strokeText(scoreRank, 940, 930);
 
+  // 遺物スコア描画
   if (json["relics"]) {
     for (let i = 0; i < json["relics"].length; i++) {
       ctx.fillRect(1780, 50 + i * 170, 5, 150);
@@ -378,6 +395,11 @@ async function createImg(json) {
       ctx.strokeText(scoreRank, 1830, 180 + i * 170);
     }
   }
+
+  // クレジット描画
+  ctx.font = '25px "kt"';
+  ctx.fillStyle = "rgb(255, 255, 255)";
+  ctx.fillText("Powered by MiHoMo API & Made by Shicoku", 22, 1065);
 
   return canvas;
 
