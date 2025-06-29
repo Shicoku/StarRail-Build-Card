@@ -2,17 +2,22 @@
 
 本プロジェクトは、[崩壊スターレイル](https://hsr.hoyoverse.com/ja-jp/home)のビルドカードを作るためのプログラムです。
 
+![build-card](./build-card.png "生成サンプル")
+<center><small>生成サンプル</small></center>
+
 # 環境
 
 - Node.js v22.14.0
 
 # 準備
+[Releases](https://github.com/Shicoku/StarRail-Build-Card/releases)より、最新バージョンをダウンロード、展開してください。
+<br />なお、このプロジェクトをクローンしても構いません。
+
 
 以下のリポジトリをクローンしてください。
 
-1. このプロジェクトのリポジトリ
-2. [StarRailScore](https://github.com/Mar-7th/StarRailScore) にて、`score.json`
-3. [StarRailRes](https://github.com/Mar-7th/StarRailRes)にて、`iconフォルダ`・ `imageフォルダ`
+1. [StarRailScore](https://github.com/Mar-7th/StarRailScore) にて、`score.json`
+2. [StarRailRes](https://github.com/Mar-7th/StarRailRes)にて、`iconフォルダ`・ `imageフォルダ`
 
 続いて以下のコマンド実行し、必要なパッケージをインストールします。
 
@@ -67,3 +72,4 @@ Copyright (c) 2025 Shicoku / Syu
 - 2025.6.25 v.0.3.0 β
 - 2025.6.27 v.0.4.0 β
 - 2025.6.27 v.1.0.0
+- 2025.6.29
