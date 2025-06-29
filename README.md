@@ -3,7 +3,6 @@
 本プロジェクトは、[崩壊スターレイル](https://hsr.hoyoverse.com/ja-jp/home)のビルドカードを作るためのプログラムです。
 
 ![build-card](./build-card.png "生成サンプル")
-<center><small>生成サンプル</small></center>
 
 # 環境
 
