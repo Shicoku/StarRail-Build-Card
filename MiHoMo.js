@@ -200,10 +200,10 @@ async function createImg(json) {
   const canvas = createCanvas(1920, 1080);
   const ctx = canvas.getContext("2d");
 
-  registerFont("font/kt.ttf", { family: "kt" }); // フォントの指定
+  registerFont("assets/font/kt.ttf", { family: "kt" }); // フォントの指定
 
   //背景画像の指定
-  await loadImage("./img/back.jpg").then((img) => {
+  await loadImage("./assets/img/back.jpg").then((img) => {
     ctx.drawImage(img, 0, 0, 1920, 1080);
   });
 
@@ -274,7 +274,7 @@ async function createImg(json) {
 
   // 軌跡描画
   for (let i = 0; i < json["skill"].length; i++) {
-    await loadImage("./img/back_icon.png").then((img) => {
+    await loadImage("./assets/img/back_icon.png").then((img) => {
       ctx.drawImage(img, 540, 220 + i * 150, img.width / 1.3, img.height / 1.3);
     });
     await loadImage(json["skill"][i]["icon"]).then((img) => {
@@ -292,14 +292,14 @@ async function createImg(json) {
 
   // 凸数描画
   for (let i = 0; i < json["rank_icons"].length; i++) {
-    await loadImage("./img/back_icon.png").then((img) => {
+    await loadImage("./assets/img/back_icon.png").then((img) => {
       ctx.drawImage(img, 1100, 130 + i * 150, img.width / 1.3, img.height / 1.3);
     });
     await loadImage(json["rank_icons"][i]["icon"]).then((img) => {
       ctx.drawImage(img, 1100, 130 + i * 150, img.width / 1.3, img.height / 1.3);
     });
     if (json["rank_icons"][i]["lock"] == true) {
-      await loadImage("./img/back_icon.png").then((img) => {
+      await loadImage("./assets/img/back_icon.png").then((img) => {
         ctx.drawImage(img, 1100, 130 + i * 150, img.width / 1.3, img.height / 1.3);
       });
     }

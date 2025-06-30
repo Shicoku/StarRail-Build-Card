@@ -2,7 +2,7 @@
 
 本プロジェクトは、[崩壊スターレイル](https://hsr.hoyoverse.com/ja-jp/home)のビルドカードを作るためのプログラムです。
 
-![build-card](./build-card.png "生成サンプル")
+![build-card](./public/build-card.png "生成サンプル")
 
 # 環境
 
@@ -66,7 +66,7 @@ Copyright (c) 2025 Shicoku / Syu
 
 # 更新
 
-[Change Log](./changelog.md)
+[Change Log](./doc/changelog.md)
 
 - 2025.2.3 v.0.1.0 β
 - 2025.3.1
@@ -75,3 +75,4 @@ Copyright (c) 2025 Shicoku / Syu
 - 2025.6.27 v.0.4.0 β
 - 2025.6.27 v.1.0.0
 - 2025.6.29
+- 2025.6.30 v.1.0.1
