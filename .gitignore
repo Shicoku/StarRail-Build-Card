@@ -1,0 +1,7 @@
+zip.js
+score.json
+StarRailRes/
+node_modules/
+Releases/
+*.bat
+output.png
