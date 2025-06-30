@@ -352,18 +352,20 @@ async function createImg(json) {
 
   // 遺物セット描画
   if (json["relic_sets"]) {
-    for (let i = 0; i < json["relic_sets"].length; i++) {
+    fillRoundRect(ctx, 660, 805, 400, 90, 30, "rgba(0,0,0,0.6)");
+    let i = 0;
+    let point = 0;
+    if (json["relic_sets"][0]["name"] == json["relic_sets"][1]["name"]) i = 1;
+    for (i; i < json["relic_sets"].length; i++) {
       await loadImage(json["relic_sets"][i]["icon"]).then((img) => {
-        if (i == 0) {
-          fillRoundRect(ctx, 660, 700, 400, 190, 30, "rgba(0,0,0,0.6)");
-        }
-        ctx.drawImage(img, 680, 710 + i * 55, img.width / 2.3, img.height / 2.3);
+        ctx.drawImage(img, 680 + point * 130, 820, 70, 70);
 
         ctx.fillStyle = "rgb(255, 255, 255)";
         ctx.textAlign = "left";
-        ctx.font = '25px "kt"';
-        ctx.fillText(json["relic_sets"][i]["name"] + "  x" + json["relic_sets"][i]["num"], 750, 740 + i * 58);
+        ctx.font = '30px "kt"';
+        ctx.fillText("x" + json["relic_sets"][i]["num"], 750 + point * 130, 870);
       });
+      point++;
     }
   }
 
