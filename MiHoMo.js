@@ -161,8 +161,8 @@ function getDataScore(data, char) {
   let subScore = 0;
   let totalScore = 0;
   const weight = JSON.parse(fs.readFileSync(config.scorePath, "utf-8"));
-  const weight_none = JSON.parse(fs.readFileSync("./score/none.json", "utf-8"));
-  const maxVal = JSON.parse(fs.readFileSync("./score/max_value.json", "utf-8"));
+  const weight_none = JSON.parse(fs.readFileSync("./assets/score/none.json", "utf-8"));
+  const maxVal = JSON.parse(fs.readFileSync("./assets/score/max_value.json", "utf-8"));
   let main_weight;
   let sub_weight;
 

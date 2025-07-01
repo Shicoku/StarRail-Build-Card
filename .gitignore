@@ -1,7 +1,11 @@
+# Files
 zip.js
+release.js
 score.json
+output.png
+*.bat
+
+# Folders
 StarRailRes/
 node_modules/
 Releases/
-*.bat
-output.png
