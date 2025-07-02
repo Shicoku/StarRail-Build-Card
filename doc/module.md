@@ -14,6 +14,18 @@ MiHoMo APIを実行します。
 MiHoMo.getApi("830647229");
 ```
 
+## `getCharData(name)`
+キャラクター名から、キャラクターのデータを検索できます。
+<br />検索は部分一致になっています。
+
+| 引数 | 型     | 説明             |
+| ---- | ------ | ---------------- |
+| name  | string | キャラクターの名前を渡します。 |
+
+```js
+MiHoMo.getCharData('三月なのか');
+```
+
 ## `getDataBase(data, character)`
 
 取得したAPIデータとキャラクターの情報を参照し、jsonデータを作成します。

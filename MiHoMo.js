@@ -14,6 +14,18 @@ async function getApi(uid) {
   return data;
 }
 
+// キャラデータを取得する
+function getCharData(name) {
+  const charData = JSON.parse(fs.readFileSync("./StarRailRes/index_min/jp/characters.json"));
+  for (const id in charData) {
+    const char = charData[id];
+    if (char.name.includes(name)) {
+      return char;
+    }
+  }
+  return null;
+}
+
 //データを取得する
 function getDataBase(data, character) {
   let json = {
@@ -456,6 +468,7 @@ async function createImg(json) {
 module.exports = {
   config,
   getApi,
+  getCharData,
   getDataBase,
   getDataScore,
   createImg,
