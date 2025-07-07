@@ -1,17 +1,22 @@
 const fs = require("fs");
-const MiHoMo = require("./MiHoMo");
+const { MiHoMo, ApiError } = require("./MiHoMo");
 
-async function main(uid) {
-  const data = await MiHoMo.getApi(uid);
-  const json = MiHoMo.getDataScore(data, 0);
-  MiHoMo.createImg(json)
-    .then((canvas) => {
+async function main(uid, char) {
+  const mihomo = new MiHoMo();
+  try {
+    const data = await mihomo.getApi(uid);
+    const json = mihomo.getDataScore(data, char);
+    mihomo.createImg(json).then((canvas) => {
       fs.writeFileSync("output.png", canvas.toBuffer());
       console.log("Image created successfully!");
-    })
-    .catch((err) => {
-      console.error("Error occurred:", err);
     });
+  } catch (err) {
+    if (err instanceof ApiError) {
+      console.error(`${err.status} : ${err.message})`);
+    } else {
+      console.error("何らかのエラーが発生しました:", err);
+    }
+  }
 }
-main(""); // ここへUIDを入力してください
-// 例: main("1234567890");
+main("", 0); // ここへUIDとキャラ番号を入れてください。
+// 例: main("830647229", 0);

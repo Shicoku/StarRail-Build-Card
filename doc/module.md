@@ -1,8 +1,19 @@
 # モジュール一覧
 
-## `getAPI(uid)`
+## MiHoMoクラス
+API取得から画像取得までを行うクラスです。
+<br />このクラスを使用する際には、以下のようにモジュールの読み込み、またインスタンスの作成を行います。
+```js
+const { MiHoMo } = require("./MiHoMo");
+const mihomo = new MiHoMo();
+```
 
-MiHoMo APIを実行します。
+### モジュール一覧
+MiHoMoクラス内のモジュールを示します。
+
+#### `getAPI(uid)`
+MiHoMo APIを実行し、JSONデータとして返します。
+<br />なお、APIの取得に失敗した場合はステータスコードを返します。
 
 | 引数 | 型     | 説明             |
 | ---- | ------ | ---------------- |
@@ -11,22 +22,10 @@ MiHoMo APIを実行します。
 ※uidの型は`string(文字列)`であることに注意してください
 
 ```js
-MiHoMo.getApi("830647229");
+mihomo.getApi("830647229");
 ```
 
-## `getCharData(name)`
-キャラクター名から、キャラクターのデータを検索できます。
-<br />検索は部分一致になっています。
-
-| 引数 | 型     | 説明             |
-| ---- | ------ | ---------------- |
-| name  | string | キャラクターの名前を渡します。 |
-
-```js
-MiHoMo.getCharData('三月なのか');
-```
-
-## `getDataBase(data, character)`
+#### `getDataBase(data, character)`
 
 取得したAPIデータとキャラクターの情報を参照し、jsonデータを作成します。
 <br />なお、遺物スコアは計算されません。
@@ -37,10 +36,10 @@ MiHoMo.getCharData('三月なのか');
 | character | Number(int) | キャラクターの番号(0～7)を渡します。   |
 
 ```js
-MiHoMo.getDataBase(data, 0);
+mihomo.getDataBase(data, 0);
 ```
 
-## `getDataScore`
+#### `getDataScore`
 
 取得したAPIデータとキャラクターの情報を参照し、sonデータを作成します。
 <br />なお、遺物スコアも計算されます。
@@ -51,10 +50,10 @@ MiHoMo.getDataBase(data, 0);
 | character | Number(int) | キャラクターの番号(0～7)を渡します。   |
 
 ```js
-MiHoMo.getDataScore(data, 0);
+mihomo.getDataScore(data, 0);
 ```
 
-## createImg(data)
+#### createImg(data)
 
 生成したjsonデータから画像を生成します。
 <br />なお、`getDataScore`で生成したデータのみ対応です。
@@ -66,7 +65,53 @@ MiHoMo.getDataScore(data, 0);
 | data | json | `getDataScore`によって生成されたデータを渡します。 |
 
 ```js
-MiHoMo.createImg(data).then((canvas) => {
+mihomo.createImg(data).then((canvas) => {
   fs.writeFileSync("output.png", canvas.toBuffer());
 });
+```
+
+## ApiErrorクラス
+API取得時のエラー判断に関するクラスです。
+<br />APIを実行する際に発生するエラーについて、判断しステータスコードとエラーメッセージを返します。
+
+使用する場合は、以下の用にモジュールを読み込んでください。
+```js
+const { ApiError } = require("./MiHoMo");
+```
+
+このクラスでは、戻り値としてステータスコードとエラーメッセージを返します。
+<br  />以下は実装例です。
+```js
+try {
+  const ApiData = await mihomo.getApi(uid);
+
+  //そのあとの処理
+} catch (err) {
+  if(err instanceof ApiError) {
+    console.error(`${err.status} : ${err.message}`);
+  } else {
+    console.error(err);
+  }
+}
+```
+
+## その他モジュール
+クラス化されていないモジュールについてです。
+
+各モジュールを使用する場合は、モジュール事に呼び出しが必要になります。
+<br />以下は`getCharData`モジュールを使用する場合の例を示します。
+```js
+const { getCharData } = require("./MiHoMo");
+```
+### モジュール一覧
+#### `getCharData(name)`
+キャラクター名から、キャラクターのデータを検索できます。
+<br />検索は部分一致になっています。
+
+| 引数 | 型     | 説明             |
+| ---- | ------ | ---------------- |
+| name  | string | キャラクターの名前を渡します。 |
+
+```js
+getCharData('三月なのか');
 ```

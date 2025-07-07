@@ -61,6 +61,15 @@
 - モジュールの追加
   - `getCharData(name)`
 
+## v.2.0.0
+2025.7.7
+- `MiHoMo`クラスの追加
+  - `getApi()`
+  - `getDataBase()`
+  - `getDataScore()`
+  - `createImg()`
+- `ApiError`クラスの追加
+
 # リポジトリ更新
 ## 2025.3.1
 - READMEの更新
@@ -74,3 +83,10 @@
 
 ## 2025.7.1
 - READMEの更新
+
+## 2025.7.7
+- ドキュメントの更新
+  - [モジュール](./module.md)
+  - [使い方](./use.md)
+- ドキュメントの追加
+  - [コンフィグ](./config.md)

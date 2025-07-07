@@ -52,9 +52,6 @@ $ npm install
 - [StarRailScore](https://github.com/Mar-7th/StarRailScore)
 - [StarRailRes](https://github.com/Mar-7th/StarRailRes)
 
-## バージョニング
-[セマンティック バージョニング 2.0.0](https://semver.org/lang/ja/)
-
 # ライセンス
 
 [MIT License](LICENSE)

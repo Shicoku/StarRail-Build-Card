@@ -4,6 +4,7 @@ release.js
 score.json
 output.png
 *.bat
+test.js
 
 # Folders
 StarRailRes/
