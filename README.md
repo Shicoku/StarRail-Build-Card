@@ -62,6 +62,7 @@ Copyright (c) 2025 Shicoku / Syu
 
 ご質問等ございましたら、気軽にお声がけください。
 <br />[XのDM](https://x.com/H2DH8K)、またはメールアドレス shicoku07@gmail.com 等でお願いします。
+<br />また、本プロジェクトに関する内容で来たら、Issueを建ててもらっても構いません。ぜひご活用ください。
 
 # 更新
 
