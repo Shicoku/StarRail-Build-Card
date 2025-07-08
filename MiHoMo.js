@@ -2,7 +2,7 @@ const { createCanvas, loadImage, registerFont } = require("canvas");
 const fs = require("fs");
 
 const config = {
-  scorePath: "./score.json",
+  scorePath: "./StarRailScore/",
   StarRailPath: "./StarRailRes/",
 };
 
@@ -194,19 +194,32 @@ class MiHoMo {
   }
 
   // 遺物スコアの計算
-  getDataScore(data, char) {
+  getDataScore(data, char, weightData) {
     this.data = data;
     this.char = char;
-
-    if (this.data == null) {
-      return null;
-    }
+    this.weightData = weightData;
 
     let json = this.getDataBase(data, char);
+
+    let weight;
+    if (this.weightData == null || this.weightData == 0) {
+      weight = JSON.parse(fs.readFileSync(config.scorePath + "score.json", "utf-8"));
+    } else if (typeof this.weightData === "number") {
+      const selfData = JSON.parse(fs.readFileSync("./assets/score/score_self.json", "utf-8"));
+      const arr = selfData[json["id"]];
+      if (arr && arr.length >= this.weightData) {
+        weight = arr[this.weightData - 1];
+      } else {
+        throw new ErrorEvent(`${json["name"]} の重要度データが見つかりません。`);
+      }
+    } else if (typeof this.weightData === "string") {
+      const weightFile = JSON.parse(fs.readFileSync("./assets/score/score_self.json", "utf-8"));
+      weight = weightFile[json["id"]].find((item) => item.name === weightData);
+    }
+
     let mainScore = 0;
     let subScore = 0;
     let totalScore = 0;
-    const weight = JSON.parse(fs.readFileSync(config.scorePath, "utf-8"));
     const weight_none = JSON.parse(fs.readFileSync("./assets/score/none.json", "utf-8"));
     const maxVal = JSON.parse(fs.readFileSync("./assets/score/max_value.json", "utf-8"));
     let main_weight;
@@ -514,9 +527,42 @@ function getCharData(name) {
   return null;
 }
 
+// キャラ重要度の検索
+function getCharWeight(name, num) {
+  const charDataSelf = JSON.parse(fs.readFileSync("./assets/score/score_self.json", "utf-8"));
+  const charId = getCharData(name).id;
+  if (num == null) {
+    return charDataSelf[charId].length + 1;
+  } else if (num == 0) {
+    const charData = JSON.parse(fs.readFileSync(config.scorePath + "score.json", "utf-8"));
+    return charData[charId];
+  } else {
+    return charDataSelf[charId][num - 1];
+  }
+}
+
+// キャラの重要度作成
+function setCharWeight(name, data) {
+  const charData = getCharData(name);
+  const charId = charData.id;
+  const charName = charData.name;
+  const charDataSelf = JSON.parse(fs.readFileSync("./assets/score/score_self.json", "utf-8"));
+
+  if (charDataSelf[charId]) {
+    charDataSelf[charId].push(data);
+  } else {
+    charDataSelf[charId] = [data];
+  }
+
+  fs.writeFileSync("./assets/score/score_self.json", JSON.stringify(charDataSelf, null, 2), "utf-8");
+  return `${charName} の重要度データを作成しました。`;
+}
+
 module.exports = {
   config,
   ApiError,
   MiHoMo,
   getCharData,
+  getCharWeight,
+  setCharWeight,
 };

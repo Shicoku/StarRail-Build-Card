@@ -8,6 +8,7 @@ test.js
 
 # Folders
 StarRailRes/
+StarRailScore/
 node_modules/
 Releases/
 .vscode/

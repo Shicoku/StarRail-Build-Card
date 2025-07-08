@@ -11,14 +11,16 @@ const { config } = require("./MiHoMo");
 <br />[StarRailScore](https://github.com/Mar-7th/StarRailScore)でクローンした`score.json`のファイルパスを変更する場合は以下のように書きます。
 
 ```js
-config.scorePath = "./score/score.json";
+config.scorePath = "./assets/score/";
 ```
 
 ### コンフィグ一覧
 
 | コンフィグ名 | 値           | 内容                            |
 | ------------ | ------------ | ------------------------------- |
-| scorePath    | Path(string) | `score.json`のファイルパスの指定 |
-| StarRailPath | Path(string) | `StarRailRes`フォルダパスの指定 |
+| scorePath    | Path(Storing) | `score.json`のフォルダパスの指定 |
+| StarRailPath | Path(Storing) | `StarRailRes`フォルダパスの指定 |
+
+フォルダパスを指定する際は、必ず末尾に`/`を入力してください。
 
 ※今後、コンフィグ内容は増やしていく予定です。

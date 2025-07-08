@@ -4,9 +4,10 @@
 
 ![build-card](./public/build-card.png "生成サンプル")
 
-# 環境
+# 制作環境
 
 - Node.js v22.14.0
+- Windows 11
 
 # 準備
 [Releases](https://github.com/Shicoku/StarRail-Build-Card/releases)より、最新バージョンをダウンロード、展開してください。
@@ -15,8 +16,16 @@
 
 以下のリポジトリをクローンしてください。
 
-1. [StarRailScore](https://github.com/Mar-7th/StarRailScore) にて、`score.json`
-2. [StarRailRes](https://github.com/Mar-7th/StarRailRes)にて、`iconフォルダ`・ `imageフォルダ`
+1. [StarRailScore](https://github.com/Mar-7th/StarRailScore)
+2. [StarRailRes](https://github.com/Mar-7th/StarRailRes)
+
+ファイルパスは以下の通りです。
+```
+StarRail-Build-Card/
+├── StarRailScore/
+├── StarRailRes
+└── その他のファイル
+```
 
 続いて以下のコマンド実行し、必要なパッケージをインストールします。
 
@@ -41,6 +50,9 @@ $ npm install
 ## 素敵なゲーム様
 
 [崩壊スターレイル](https://hsr.hoyoverse.com/ja-jp/home)
+
+## API
+[MiHoMo API](https://march7th.xyz/en/)
 
 ## モジュール
 
