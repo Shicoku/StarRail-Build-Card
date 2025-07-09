@@ -5,6 +5,8 @@ score.json
 output.png
 *.bat
 test.js
+test.json
+memo.txt
 
 # Folders
 StarRailRes/
