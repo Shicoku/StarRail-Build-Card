@@ -7,3 +7,7 @@ templates:
   - name: ドキュメント関連
     description: ドキュメントに関する変更・修正などのテンプレート
     file: document.yml
+
+  - name: 質問
+    description: 質問に関するテンプレート
+    file: question.yml

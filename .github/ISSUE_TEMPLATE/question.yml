@@ -1,0 +1,24 @@
+name: 質問
+description: 質問はこちらから
+title: "[質問] "
+labels: ["質問"]
+body:
+  - type: input
+    id: overview
+    attributes:
+      label: 概要
+      description: 概要を簡潔に入力してください。
+      placeholder: 画像の生成方法について。
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: 内容
+      description: 質問内容を入力してください。
+      placeholder: 画像の生成には、どのモジュールを使用していますか。
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 備考
+      description: 関連Issueや参考情報があれば記述してください
