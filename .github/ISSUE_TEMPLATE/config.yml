@@ -1,5 +1,9 @@
 blank_issues_enabled: false
 templates:
-  - name: 💡 機能リクエスト
+  - name: 機能リクエスト
     description: 新機能の提案テンプレート
     file: feature_request.yml
+
+  - name: ドキュメント関連
+    description: ドキュメントに関する変更・修正などのテンプレート
+    file: document.yml

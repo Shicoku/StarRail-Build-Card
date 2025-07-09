@@ -1,0 +1,26 @@
+name: ドキュメント
+description: ドキュメントに関する変更・開発はこちらから
+title: "[docs] "
+labels: ["ドキュメント"]
+body:
+  - type: input
+    id: overview
+    attributes:
+      label: 概要
+      description: 概要を簡潔に入力してください。
+      placeholder: ドキュメントの整理
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: 実装
+      description: 具体的な実装案や作業項目を入力してください。
+      value: |
+        - [ ] モジュール一覧を追加
+        - [ ] コンフィグ一覧の修正
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 備考
+      description: 関連Issueや参考情報があれば記述してください
