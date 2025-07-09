@@ -276,10 +276,14 @@ class MiHoMo {
 
     // 属性と運命アイコン描画
     await loadImage(json["element"]).then((img) => {
-      ctx.drawImage(img, 150, 75, img.width / 5, img.height / 5);
+      ctx.drawImage(img, 160, 75, img.width / 5, img.height / 5);
     });
     await loadImage(json["path"]).then((img) => {
-      ctx.drawImage(img, 200, 79, img.width / 10, img.height / 10);
+      ctx.drawImage(img, 220, 79, img.width / 10, img.height / 10);
+    });
+
+    await loadImage("./assets/img/front.png").then((img) => {
+      ctx.drawImage(img, 0, 0, 1920, 1080);
     });
 
     // ステータス描画
@@ -289,9 +293,6 @@ class MiHoMo {
     if (json["status"].length == 9) inter = 65;
     for (let i = 0; i < json["status"].length; i++) {
       await loadImage(json["status"][i]["icon"]).then((img) => {
-        if (i == 0) {
-          fillRoundRect(ctx, 20, 140, 480, 630, 30, "rgba(0, 0, 0, 0.5)");
-        }
         ctx.drawImage(img, 40, 155 + i * inter, img.width / 2.3, img.height / 2.3);
 
         ctx.fillStyle = "rgb(255, 255, 255)";
@@ -306,8 +307,6 @@ class MiHoMo {
     // 光円錐描画
     if (json["light_cone"] != null) {
       await loadImage(json["light_cone"]["icon"]).then((img) => {
-        fillRoundRect(ctx, 20, 780, 480, 260, 30, "rgba(0,0,0,0.5)");
-
         ctx.font = '20px "kt"';
         ctx.fillStyle = "rgb(255, 255, 255)";
         ctx.fillText(json["light_cone"]["name"], 250, 830);
@@ -336,12 +335,8 @@ class MiHoMo {
 
     // 軌跡描画
     for (let i = 0; i < json["skill"].length; i++) {
-      await loadImage("./assets/img/back_icon.png").then((img) => {
-        ctx.drawImage(img, 540, 220 + i * 150, img.width / 1.3, img.height / 1.3);
-      });
       await loadImage(json["skill"][i]["icon"]).then((img) => {
         ctx.drawImage(img, 540, 220 + i * 150, img.width / 1.3, img.height / 1.3);
-        fillRoundRect(ctx, 540, 320 + i * 150, 90, 40, 10, "rgba(0,0,0,0.5)");
         ctx.font = '40px "kt"';
         ctx.fillStyle = "rgb(255, 255, 255)";
         if (json["skill"][i]["level"].toString().length == 1) {
@@ -354,9 +349,6 @@ class MiHoMo {
 
     // 凸数描画
     for (let i = 0; i < json["rank_icons"].length; i++) {
-      await loadImage("./assets/img/back_icon.png").then((img) => {
-        ctx.drawImage(img, 1100, 130 + i * 150, img.width / 1.3, img.height / 1.3);
-      });
       await loadImage(json["rank_icons"][i]["icon"]).then((img) => {
         ctx.drawImage(img, 1100, 130 + i * 150, img.width / 1.3, img.height / 1.3);
       });
@@ -371,7 +363,6 @@ class MiHoMo {
     if (json["relics"]) {
       for (let i = 0; i < json["relics"].length; i++) {
         await loadImage(json["relics"][i]["icon"]).then((img) => {
-          fillRoundRect(ctx, 1230, 50 + i * 170, 670, 150, 30, "rgba(0,0,0,0.6)");
           ctx.drawImage(img, 1240, 55 + i * 170, img.width, img.height);
         });
         await loadImage(json["relics"][i]["main_affix"]["icon"]).then((img) => {
@@ -414,7 +405,6 @@ class MiHoMo {
 
     // 遺物セット描画
     if (json["relic_sets"]) {
-      fillRoundRect(ctx, 660, 805, 400, 90, 30, "rgba(0,0,0,0.6)");
       let i = 0;
       let point = 0;
       if (json["relic_sets"][0]["name"] == json["relic_sets"][1]["name"]) i = 1;
@@ -445,7 +435,6 @@ class MiHoMo {
     ctx.strokeText("Lv. " + json["level"], 45, 120);
 
     // スコア描画
-    fillRoundRect(ctx, 660, 900, 400, 170, 30, "rgba(0,0,0,0.6)");
     ctx.font = '40px "kt"';
     ctx.fillStyle = "rgb(255, 255, 255)";
     ctx.fillText("Total Score", 690, 950);
@@ -469,7 +458,6 @@ class MiHoMo {
     if (json["relics"]) {
       for (let i = 0; i < json["relics"].length; i++) {
         ctx.fillRect(1780, 50 + i * 170, 5, 150);
-
         ctx.font = '30px "kt"';
         ctx.fillStyle = "rgb(255, 255, 255)";
         ctx.fillText("Score", 1795, 90 + i * 170);
@@ -489,29 +477,7 @@ class MiHoMo {
         ctx.strokeText(scoreRank, 1830, 180 + i * 170);
       }
     }
-
-    // クレジット描画
-    ctx.font = '25px "kt"';
-    ctx.fillStyle = "rgb(255, 255, 255)";
-    ctx.fillText("Powered by MiHoMo API & Made by Shicoku", 22, 1065);
-
     return canvas;
-
-    function fillRoundRect(ctx, x, y, w, h, r, c) {
-      ctx.fillStyle = c;
-      ctx.beginPath();
-      ctx.moveTo(x + r, y);
-      ctx.lineTo(x + w - r, y);
-      ctx.arc(x + w - r, y + r, r, Math.PI * (3 / 2), 0, false);
-      ctx.lineTo(x + w, y + h - r);
-      ctx.arc(x + w - r, y + h - r, r, 0, Math.PI * (1 / 2), false);
-      ctx.lineTo(x + r, y + h);
-      ctx.arc(x + r, y + h - r, r, Math.PI * (1 / 2), Math.PI, false);
-      ctx.lineTo(x, y + r);
-      ctx.arc(x + r, y + r, r, Math.PI, Math.PI * (3 / 2), false);
-      ctx.closePath();
-      ctx.fill();
-    }
   }
 }
 
