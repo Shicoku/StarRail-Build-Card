@@ -1,5 +1,10 @@
 # StarRail-Build-Card
 
+> [!WARNING]
+> npmパッケージにて使用できるように新プロジェクトを公開しました。\
+> それに伴い、本リポジトリはアーカイブされました。
+> 最新版については **[StarRail Manager](https://github.com/Shicoku/StarRail-Manager)** を参照してください。
+
 本プロジェクトは、[崩壊スターレイル](https://hsr.hoyoverse.com/ja-jp/home)のビルドカードを作るためのプログラムです。
 
 ![build-card](./public/build-card.png "生成サンプル")
